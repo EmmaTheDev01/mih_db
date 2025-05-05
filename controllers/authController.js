@@ -33,6 +33,7 @@ const register = async (req, res) => {
   }
 };
 
+  
 // Login user and generate JWT token
 const login = async (req, res) => {
     const { email, password } = req.body;
@@ -112,4 +113,4 @@ const logout = (req, res) => {
   res.status(200).json({ message: 'Logged out successfully' });
 };
 
-module.exports = { register, login, updateProfile, logout };
+module.exports = { register, register, login, updateProfile, logout };

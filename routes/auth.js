@@ -1,14 +1,14 @@
 const express = require('express');
 const { register, login, updateProfile, logout } = require('../controllers/authController'); // Import your controller functions
-const {verifyUser} = require('../utils/verifyToken')
+const {verifyUser, verifyAdmin} = require('../utils/verifyToken')
 
 const router = express.Router();
 
-// Register route
-router.post('/register', register); // Route for user registration
 
 // Login route
 router.post('/login', login); // Route for user login
+
+router.post('/register',verifyAdmin,  register);
 
 // Profile update route - Protected route (must be logged in)
 router.put('/profile', verifyUser, updateProfile); // Update profile for the logged-in user
