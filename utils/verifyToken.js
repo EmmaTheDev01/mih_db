@@ -5,14 +5,14 @@ const SECRET_KEY = process.env.JWT_SECRET_KEY || 'yourSecretKey';
 
 // Middleware to verify the token
 const verifyToken = (req, res, next) => {
-  const token = req.header('Authorization')?.replace('Bearer ', '');
+  const token = req.cookies.auth_token; // Get the token from the cookies
 
   if (!token) {
     return res.status(401).json({ message: 'Access Denied: No Token Provided' });
   }
 
   try {
-    const decoded = jwt.verify(token, SECRET_KEY);
+    const decoded = jwt.verify(token, SECRET_KEY); // Verify the token using the secret key
     req.user = decoded; // Attach the decoded user information to the request object
     next(); // Proceed to the next middleware or route handler
   } catch (err) {

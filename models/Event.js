@@ -13,11 +13,16 @@ const EventSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    eventPicture: {
-      // Cloudinary URL (you will save this URL after uploading to Cloudinary)
-      type: String,
-      required: true,
-    },
+    photo: [
+        {
+          public_id: {
+            type: String,
+          },
+          url: {
+            type: String,
+          },
+        },
+      ],
     startDate: {
       type: Date,
       required: true,
